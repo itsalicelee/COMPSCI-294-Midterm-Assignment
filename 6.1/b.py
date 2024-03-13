@@ -24,13 +24,3 @@ for k in range(1, 1000):
     if res > 2:
         assert False
     bits_per_parameter.append(res)
-
-
-# plt.figure(figsize=(8, 6))
-# plt.plot(range(1,21), bits_per_parameter)
-# plt.xticks(range(1,21))
-# plt.ylabel('Information limit per parameter')
-# plt.xlabel('Number of Neighbors (k)')
-# plt.title('Information limit per parameter vs Number of Neighbors (k) for KNN Classifier')
-# plt.savefig('6.1.b.png', dpi=300)
-# plt.show()
