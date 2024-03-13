@@ -4,6 +4,7 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 from sklearn import tree
 import matplotlib.pyplot as plt
+import numpy as np
 
 def classify(dataset, name):
     dataset = load_breast_cancer(as_frame=True)
@@ -17,7 +18,7 @@ def classify(dataset, name):
     acc = accuracy_score(y_test, y_pred)
     plt.figure(figsize=(20, 12))
     tree.plot_tree(clf, fontsize=10)
-    plt.title("{} Decision Tree Classifier".format(name), fontsize = 28)
+    plt.title("{} Decision Tree Classifier\nAcc: {:.2f}".format(name, acc), fontsize = 28)
     plt.savefig('{}.1.png'.format(name.strip().lower()))
     print('Decision tree acc: {}'.format(acc))
 
@@ -28,10 +29,15 @@ def classify(dataset, name):
     acc = accuracy_score(y_test, y_pred)
     plt.figure(figsize=(20, 12))
     tree.plot_tree(clf, fontsize=10)
-    plt.title("{} Decision Tree Classifier with max_depth=2".format(name), fontsize=28)
+    plt.title("{} Decision Tree Classifier with max_depth=2\nAcc: {:.2f}".format(name, acc), fontsize=28)
     plt.savefig('{}.2.png'.format(name.strip().lower()))
     print('Decision tree (max depth=2) acc: {}'.format(acc))
 
 if __name__ == '__main__':
     classify(load_breast_cancer(), 'Breast Cancer')
     classify(load_digits(), 'Digits')
+    # random dataset 
+    data = np.random.rand(15,200)
+    target = np.random.randint(2, size=data.shape[1])
+    classify(pd.DataFrame(data), 'Random')
+    
