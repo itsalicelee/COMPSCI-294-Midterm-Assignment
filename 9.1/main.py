@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+from torchsummary import summary
 
 
 def computeMEC(data):
@@ -129,15 +130,13 @@ if __name__ == '__main__':
         all_predictions, all_labels = eval()
         accuracy = accuracy_score(all_labels, all_predictions)
         print("Test Accuracy Model{}: {:.3f}".format(i + 1, accuracy))
-loss1, loss2, loss3 = model_losses[0], model_losses[1], model_losses[2]
-plt.figure(figsize=(8, 6))
-plt.plot(range(epochs), loss1, label='Classifier1')
-plt.plot(range(epochs), loss2, label='Classifier2')
-plt.plot(range(epochs), loss3, label='Classifier3')
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.title('Loss vs Epochs for three Models')
-plt.legend()
-plt.savefig('9.1.png')
-
-    
+    loss1, loss2, loss3 = model_losses[0], model_losses[1], model_losses[2]
+    plt.figure(figsize=(8, 6))
+    plt.plot(range(epochs), loss1, label='Classifier1')
+    plt.plot(range(epochs), loss2, label='Classifier2')
+    plt.plot(range(epochs), loss3, label='Classifier3')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.title('Loss vs Epochs for three Models')
+    plt.legend()
+    plt.savefig('9.1.png')
