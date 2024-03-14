@@ -18,9 +18,10 @@ def classify(dataset, name):
     acc = accuracy_score(y_test, y_pred)
     plt.figure(figsize=(20, 12))
     tree.plot_tree(clf, fontsize=10)
-    plt.title("{} Decision Tree Classifier\nAcc: {:.3f}".format(name, acc), fontsize = 28)
+    plt.title("{} Decision Tree Classifier\nAcc: {:.3f}".format(name, acc), fontsize=28)
     plt.savefig('{}.1.png'.format(name.strip().lower()))
     print('Decision tree acc: {}'.format(acc))
+    print('Decision tree nodes: {}'.format(clf.get_n_leaves()))
 
     # Second algorithm
     clf = tree.DecisionTreeClassifier(max_depth=2)
@@ -28,10 +29,11 @@ def classify(dataset, name):
     y_pred = clf.predict(X_test)
     acc = accuracy_score(y_test, y_pred)
     plt.figure(figsize=(20, 12))
-    tree.plot_tree(clf, fontsize=10)
+    tree.plot_tree(clf, fontsize=8)
     plt.title("{} Decision Tree Classifier with max_depth=2\nAcc: {:.3f}".format(name, acc), fontsize=28)
     plt.savefig('{}.2.png'.format(name.strip().lower()))
     print('Decision tree (max depth=2) acc: {}'.format(acc))
+    print('Decision tree nodes: {}'.format(clf.get_n_leaves()))
 
 if __name__ == '__main__':
     classify(load_breast_cancer(as_frame=True), 'Breast Cancer')
